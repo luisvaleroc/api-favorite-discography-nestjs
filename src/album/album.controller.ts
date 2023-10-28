@@ -9,7 +9,6 @@ export class AlbumController {
 
   @Post()
   create(@Body() createAlbumDto: CreateAlbumDto) {
-    return createAlbumDto
     return this.albumService.create(createAlbumDto);
   }
 
