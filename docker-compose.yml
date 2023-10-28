@@ -1,16 +1,20 @@
 version: '3.8'
-
 services:
-  mongodb:
-    container_name: discography
-    image: mongo
+  discography-db:
+    image: mongo:latest
+    container_name: discography-mongo
+    environment:
+      MONGO_INITDB_DATABASE: discography
+    volumes:
+      - discography-data:/data/db
     ports:
       - "27017:27017"
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: discography
-      MONGO_INITDB_ROOT_PASSWORD: favorite
-    volumes:
-      - mongodb_data:/data/db
+    networks:
+      - discography-net
 
 volumes:
-  mongodb_data:
+  discography-data:
+
+networks:
+  discography-net:
+    driver: bridge
