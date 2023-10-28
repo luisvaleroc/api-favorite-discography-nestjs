@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  mongodb:
+    container_name: discography
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: discography
+      MONGO_INITDB_ROOT_PASSWORD: favorite
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:
