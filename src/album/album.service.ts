@@ -10,9 +10,9 @@ import { InjectModel } from '@nestjs/mongoose';
 export class AlbumService {
   constructor(@InjectModel(Album.name) private  AlbumModel: Model<Album>) {}
 
-  create(createAlbumDto: CreateAlbumDto) {
-    const createdAlbum = new this.AlbumModel(CreateAlbumDto);
-    return createdAlbum.save();
+  async create(createCatDto: CreateAlbumDto): Promise<Album> {
+    const createAlbum = new this.AlbumModel(createCatDto);
+    return createAlbum.save();
   }
 
   findAll() {

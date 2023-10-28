@@ -9,7 +9,7 @@ export class Album {
   name: string;
 
   @Prop()
-  url: number;
+  url: string;
 
   @Prop()
   autor: string;
