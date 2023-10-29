@@ -1,15 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { CreateSingerDto } from './dto/create-singer.dto';
 import { UpdateSingerDto } from './dto/update-singer.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Singer } from './schemas/singer.schema';
 
 @Injectable()
 export class SingersService {
-  create(createSingerDto: CreateSingerDto) {
-    return createSingerDto;
+  constructor(@InjectModel(Singer.name) private SingerModel: Model<Singer>){
+    
+  }
+  async create(createSingerDto: CreateSingerDto): Promise<Singer> {
+    const createdSinger = new this.SingerModel(createSingerDto);
+    return createdSinger.save();
   }
 
   findAll() {
-    return `This action returns all singers`;
+    return this.SingerModel.find().exec();
   }
 
   findOne(id: number) {
