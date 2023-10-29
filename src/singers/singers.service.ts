@@ -11,7 +11,6 @@ export class SingersService {
     
   }
   async create(createSingerDto: CreateSingerDto): Promise<Singer> {
-    const saludo = "singer";
     const createdSinger = new this.SingerModel(createSingerDto);
     return createdSinger.save();
   }
