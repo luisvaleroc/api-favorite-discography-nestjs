@@ -1,11 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import { CreateSongDto } from './dto/create-song.dto';
 import { UpdateSongDto } from './dto/update-song.dto';
+import { SongRepository } from './repository/song.repository';
+import { Song } from './schemas/song.schema';
+import { AlbumRepository } from 'src/album/repository/album.repository';
 
 @Injectable()
 export class SongsService {
-  create(createSongDto: CreateSongDto) {
-    return 'This action adds a new song';
+  constructor(private songRepository: SongRepository, private albumRepository: AlbumRepository){
+
+  }
+  async create(createSongDto: CreateSongDto): Promise<Song> {
+    const song = await this.songRepository.create(createSongDto)
+    console.log(song)
+    const album = await this.albumRepository.update(song.album,song)
+   return song
   }
 
   findAll() {
