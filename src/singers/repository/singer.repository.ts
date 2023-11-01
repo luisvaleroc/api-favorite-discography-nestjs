@@ -16,4 +16,13 @@ export class SingerRepository{
     async findById(id: string): Promise<Singer>{
         return await this.SingerModel.findById(id)
     }
+
+    async findAll(): Promise<Singer[]>{
+    return await this.SingerModel.find().exec();
+    }
+
+    async deleteOne(id: string){
+      return await this.SingerModel.deleteOne({'_id': id}).exec();
+    }
+
 }

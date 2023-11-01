@@ -17,11 +17,6 @@ export class SingersController {
     return this.singersService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.singersService.findOne(+id);
-  }
-
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateSingerDto: UpdateSingerDto) {
     return this.singersService.update(+id, updateSingerDto);
@@ -29,6 +24,6 @@ export class SingersController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.singersService.remove(+id);
+    return this.singersService.remove(id);
   }
 }
