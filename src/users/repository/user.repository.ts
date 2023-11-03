@@ -14,6 +14,6 @@ export class UserRepository {
     }
 
     async findById(name: string): Promise<any>{
-        return (await this.UserModel.findOne({"pass": name}))
+        return (await this.UserModel.findOne({"name": name}))
     }
 }

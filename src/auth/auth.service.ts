@@ -9,11 +9,11 @@ export class AuthService {
 
     async signIn(userName: string,  pass: String): Promise<any>{
         const user = await this.UsersService.findOne(userName)
-        console.log(user)
         if(user?.password !== pass ){
             throw new UnauthorizedException()
         }
-        const {password, ...result} = user;
+        const { password, ...result } =  user.toObject();;
+
         return result;
     }
 }
