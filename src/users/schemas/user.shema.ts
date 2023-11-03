@@ -6,7 +6,9 @@ import { HydratedDocument, Model } from "mongoose"
 export class User {
     @Prop()
     name: string
+    @Prop()
     password: string
+    @Prop()
     email: string
 }
 
