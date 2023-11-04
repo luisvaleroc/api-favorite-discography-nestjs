@@ -18,8 +18,5 @@ export class AuthService {
         return {
           access_token: await this.jwtService.signAsync(payload),
         };
-        const { password, ...result } =  user
-
-        return result;
     }
 }
